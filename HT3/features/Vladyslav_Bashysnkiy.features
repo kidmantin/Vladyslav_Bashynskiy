@@ -1,0 +1,46 @@
+Feature: EPAM site testing
+
+  Scenario: EPAM site is accessible
+    Given we have stable internet connection
+    When we go to "https://www.epam.com/"
+    Then EPAM site opens up
+
+  Scenario:  Accept all cookies button is working
+    Given we are at "https://www.epam.com/"
+    When we click "Accept all cookies"
+    Then we accept all cookies collected by EPAM site
+
+  Scenario: Caption HOW WE DO IT changes it's color to blue
+    Given we are at "https://www.epam.com/"
+    When place our cursor over Caption "HOW WE DO IT"
+    Then caption "HOW WE DO IT" changes it's color to blue
+
+  Scenario: EPAM site is resizeable
+    Given  we are at "https://www.epam.com/" in fullscreen
+    When we change form of browser window
+    Then site changes to fit in new form
+
+  Scenario: Menu button appear if browser window is small
+    Given  we are at "https://www.epam.com/" in fullscreen
+    When we change form of browser window so that header size is not suitable
+    Then "MENU" button appears instead of all buttons
+
+  Scenario: We have access to main page from any page
+    Given we are at "https://www.epam.com/asdad" (not existing page)
+    When we press icon "<EPAM>" in the upper left corner
+    Then we are readdressed to main page
+
+  Scenario: Any page contains footer at the end
+    Given we are at "https://www.epam.com/asdad"
+    When we scroll to the end of page
+    Then footer appears at the end of page
+
+  Scenario Outline: Main page has localization
+    Given go to "https://www.epam.com"
+    When we press "Global (EN)", then "{language}" in shown list
+    Then site show us full page localized to "{language}"
+    Examples:
+    |          language          |
+    |    Україна (Українська)    |
+    |    Polska (Polski)         |
+    |    Hungary (English)       |
