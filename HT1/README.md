@@ -1,1 +1,2 @@
-"# Vladyslav_Bashynskiy" 
+Hometask for basic knowledge
+
